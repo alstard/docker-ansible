@@ -6,10 +6,10 @@ Playbooks to work through some examples of Ansible. These will be tested in Kitc
 
 ## Further work - TODO
 
-| Item | Description      |
-|------|------------------|
+| Item | Description       |
+|------|-------------------|
 | 1    | Ansible Container|
-| 2    | KOPS             |
+| 2    | KOPS|
 
 ## Useful Links
 
