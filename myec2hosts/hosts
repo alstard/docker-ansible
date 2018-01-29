@@ -1,0 +1,10 @@
+[app]
+ec2-35-177-163-104.eu-west-2.compute.amazonaws.com
+ec2-35-177-115-48.eu-west-2.compute.amazonaws.com
+
+[db]
+ip-172-17-1-140.eu-west-2.compute.internal
+ip-172-17-1-12.eu-west-2.compute.internal
+
+[jumpbox]
+ec2-35-176-134-199.eu-west-2.compute.amazonaws.com

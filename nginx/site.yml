@@ -1,0 +1,25 @@
+---
+  - hosts: jumpbox
+    become: yes
+    gather_facts: False
+
+    tasks:
+      - name: install python 2
+        raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      - name: Install Apache
+        apt:
+        with_items:
+          - httpd
+          - httpd-devel
+      - name: Copy configuration files
+        copy:
+          src: "{{ item.src }}"
+          dest: "{{ item.dest }}"
+          owner: root
+          group: root
+          mode: 0644
+        with_items:
+          - src: "httpd.conf"
+            dest: "/etc/httpd/conf/httpd.conf"
+      - name: Startup apache on startup
+        service: name=httpd state=started enabled=yes

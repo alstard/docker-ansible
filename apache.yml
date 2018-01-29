@@ -1,24 +1,45 @@
 ---
-  - hosts: all
+  - hosts: jumpbox
     become: yes
+    gather_facts: False
 
     tasks:
+      - name: install python 2
+        raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
       - name: Install Apache
-        yum: name={{ item }} state=present
+        apt:
         with_items:
           - httpd
           - httpd-devel
-      - name: Copy configuration files
-        copy:
-          src: "{{ item.src }}"
-          dest: "{{ item.dest }}"
+      - name: Create apache application directory (including conf)
+        file:
+          path: /usr/local/apache2/conf
           owner: root
           group: root
-          mode: 0644
-        with_items:
-          - src: "httpd.conf"
-            dest: "/etc/httpd/conf/httpd.conf"
-          - src: "httpd-vhosts.conf"
-            dest: "/etc/httpd/conf/httpd-vhosts.conf"
+          state: directory
+          mode: 0755
+      - name: Create apache html directories
+        file:
+          path: /var/www/html
+          owner: root
+          group: root
+          state: directory
+          mode: 0755
+      - name: Copy config file
+        copy:
+          src: "files/httpd.conf"
+          dest: /tmp
+      # - name: Copy configuration files
+      #   copy:
+      #     src: "{{ item.src }}"
+      #     dest: "{{ item.dest }}"
+      #     owner: root
+      #     group: root
+      #     mode: 0644
+      #   with_items:
+      #     - src: "files/httpd.conf"
+      #       dest: "/usr/local/apache2/conf/httpd.conf"
+      #     - src: "files/index.html"
+      #       dest: "/var/www/html/index.html"
       - name: Startup apache on startup
         service: name=httpd state=started enabled=yes
