@@ -9,8 +9,7 @@
       - name: Install Apache
         apt:
         with_items:
-          - httpd
-          - httpd-devel
+          - apache2
       - name: Create apache application directory (including conf)
         file:
           path: /usr/local/apache2/conf
@@ -25,21 +24,5 @@
           group: root
           state: directory
           mode: 0755
-      - name: Copy config file
-        copy:
-          src: "files/httpd.conf"
-          dest: /tmp
-      # - name: Copy configuration files
-      #   copy:
-      #     src: "{{ item.src }}"
-      #     dest: "{{ item.dest }}"
-      #     owner: root
-      #     group: root
-      #     mode: 0644
-      #   with_items:
-      #     - src: "files/httpd.conf"
-      #       dest: "/usr/local/apache2/conf/httpd.conf"
-      #     - src: "files/index.html"
-      #       dest: "/var/www/html/index.html"
       - name: Startup apache on startup
         service: name=httpd state=started enabled=yes
