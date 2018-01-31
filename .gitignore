@@ -2,3 +2,4 @@ venv/
 scratch.txt
 .kitchen
 Gemfile.lock
+test*

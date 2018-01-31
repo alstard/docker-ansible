@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe 'sandbox ntp.yml' do
+describe 'sandbox site.yml' do
   describe package('ntp') do
     it { should be_installed }
   end
@@ -16,4 +16,5 @@ describe 'sandbox ntp.yml' do
   describe service('ntpd') do
     it { should be_running }
   end
+
 end

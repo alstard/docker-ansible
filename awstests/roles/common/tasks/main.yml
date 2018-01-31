@@ -1,0 +1,34 @@
+---
+# Common tasks applicable for all hosts
+# - name: Dump all vars
+#   template:
+#     src: templates/dumpall.j2
+#     dest: /tmp/ansible.all
+
+# - name: Get the dumped vars file to control machine
+#   fetch:
+#     src: /tmp/ansible.all
+#     dest: /tmp/
+
+# - name: Remove variable dump file
+#   file:
+#     path: /tmp/ansible.all
+#     state: absent
+
+- name: Install Initial Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ntp
+    - ntpdate
+
+- name: Copy ntp configuration file
+  template:
+    src: ntp/ntp.conf.j2
+    dest: /etc/ntp.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart ntp

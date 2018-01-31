@@ -1,0 +1,7 @@
+---
+- name: Configure NTP on host(s)
+
+  hosts: all
+
+  roles:
+    - common

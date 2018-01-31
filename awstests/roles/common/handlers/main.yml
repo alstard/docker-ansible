@@ -1,0 +1,7 @@
+---
+# Handlers for the common role
+- name: restart ntp
+  service:
+    enabled: yes
+    name: ntpd
+    state: restarted

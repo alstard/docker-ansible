@@ -1,10 +1,15 @@
 [app]
-ec2-35-177-163-104.eu-west-2.compute.amazonaws.com
-ec2-35-177-115-48.eu-west-2.compute.amazonaws.com
+ip-172-17-0-104.eu-west-2.compute.internal
+ip-172-17-0-168.eu-west-2.compute.internal
 
 [db]
-ip-172-17-1-140.eu-west-2.compute.internal
-ip-172-17-1-12.eu-west-2.compute.internal
+ip-172-17-1-197.eu-west-2.compute.internal
+ip-172-17-1-63.eu-west-2.compute.internal
 
 [jumpbox]
-ec2-35-176-134-199.eu-west-2.compute.amazonaws.com
+ec2-35-177-184-21.eu-west-2.compute.amazonaws.com
+
+[aws:children]
+app
+db
+jumpbox
