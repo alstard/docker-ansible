@@ -55,7 +55,7 @@ echo "$EC2_INVENTORY" > ./inventories/ec2hosts/hosts
 # Create ansible.cfg with defaults for AWS
 read -r -d '' AWS_ANSIBLE_CFG << EOM
 [defaults]
-inventory = inventories/myec2hosts
+inventory = inventories/ec2hosts
 remote_user = ec2-user
 ansible_ssh_private_key_file = ~/Dropbox/aws-creds/atd-dpe-ew2-keypair.pem
 EOM
