@@ -2,6 +2,7 @@
 - name: Configure NTP on host(s)
 
   hosts: all
+  become: true
 
   roles:
     - common

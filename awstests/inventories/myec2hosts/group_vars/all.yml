@@ -1,0 +1,1 @@
+ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q ec2-user@ec2-35-177-176-239.eu-west-2.compute.amazonaws.com"'
